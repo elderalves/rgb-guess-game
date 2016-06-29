@@ -9,6 +9,7 @@ $mainColor: #4CAF50;
 
 body {
   font-family: 'Montserrat';
+  background-color: #333333;
 }
 
 .top-header {
@@ -51,6 +52,16 @@ body {
   text-decoration: none;
   padding: 5px 5px;
   color: #333;
+
+  & a {
+    text-decoration: none;
+    padding: 5px 5px;
+  }
+
+}
+
+.menu__tryagain {
+  display: none;
 }
 
 .menu--strong {
@@ -64,8 +75,8 @@ body {
 }
 
 main {
-  background-color: #333333;
   padding: 20px 0;
+
 
   .container {
     width: 40%;
@@ -87,4 +98,126 @@ main {
   width: 170px;
   height: 170px;
   margin: 5px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  transition: 1s;
+  box-shadow: inset 0px -8px 0 rgba(0,0,0,0.4);
+
+  &:hover {
+    transition: 2s;
+  }
+
+  &::before {
+    content: " ";
+    display: block;
+    background-color: rgba(255,255,255,0.1);
+    width: 35px;
+    height: 350px;
+    transform: rotate(35deg);
+    position: absolute;
+    left: -70%;
+    top: -40%;
+    filter: blur(35px);
+    -webkit-filter: blur(35px);
+  }
+
+  &:hover::before {
+    animation: lineLight 1s infinite linear;
+    animation-direction: alternate;
+  }
+}
+
+.color--animation:hover {
+  animation: rubberBand 1s;
+}
+
+.color--winner {
+  animation: tada 1s;
+}
+
+.color--wrong {
+  transition: 1s;
+  -webkit-filter: blur(160px);
+  opacity: 0;
+}
+
+
+// Animations
+@keyframes rubberBand {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(.95, 1.05, 1);
+    transform: scale3d(.95, 1.05, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(1.05, .95, 1);
+    transform: scale3d(1.05, .95, 1);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes tada {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes lineLight {
+  0% {
+    left: -70%;
+  }
+  50%{
+    background-color: rgba(255,255,255,0.4);
+  }
+  100% {
+    left: 150%;
+    background-color: rgba(255,255,255,0.1);
+  }
 }
